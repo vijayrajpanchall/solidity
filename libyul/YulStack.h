@@ -134,7 +134,7 @@ public:
 	) const;
 	Json::Value astJson() const;
 
-	/// Return the EVM assembly in Json format.
+	/// Return the EVM assembly in JSON format.
 	Json::Value assemblyJson() const;
 
 	/// Return the parsed and analyzed object.
