@@ -485,8 +485,7 @@ Json::Value Assembly::assemblyJSON(std::map<std::string, unsigned> const& _sourc
 			jsonSourceList[sourceIndex] = sourceName;
 		}
 		for (unsigned i = 0; i < maxSourceIndex; ++i)
-			if (jsonSourceList[i] == Json::nullValue)
-				jsonSourceList[i] = "#unknown-source-" + std::to_string(i);
+			solRequire(jsonSourceList[i] != Json::nullValue, AssemblyImportException, "The 'sourceList' array contains invalid 'null' item.");
 	}
 
 	if (!m_data.empty() || !m_subs.empty())
@@ -528,7 +527,14 @@ std::pair<std::shared_ptr<Assembly>, std::vector<std::string>> Assembly::fromJSO
 		{
 			solRequire(_json["sourceList"].isArray(), AssemblyImportException, "Optional member 'sourceList' is not an array.");
 			for (Json::Value const& sourceName: _json["sourceList"])
-				solRequire(sourceName.isString(), AssemblyImportException, "The 'sourceList' array contains an item that is not a string.");
+			{
+				solRequire(sourceName != Json::nullValue, AssemblyImportException, "The 'sourceList' array contains invalid 'null' item.");
+				solRequire(
+					sourceName.isString(),
+					AssemblyImportException,
+					"The 'sourceList' array contains an item that is not a string."
+				);
+			}
 		}
 	}
 	else
