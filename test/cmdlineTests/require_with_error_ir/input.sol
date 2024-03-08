@@ -9,4 +9,9 @@ contract C
     {
         require(condition, CustomError(1, "two"));
     }
+
+    function g(bool condition) external pure
+    {
+        require(condition, CustomError(2, "three"));
+    }
 }
