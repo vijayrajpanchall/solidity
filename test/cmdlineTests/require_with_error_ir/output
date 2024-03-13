@@ -187,7 +187,7 @@ object "C_36" {
 
             }
 
-            function require_helper_t_error_0x97ea5a2f00000000000000000000000000000000000000000000000000000000_t_rational_1_by_1_t_stringliteral_332c39dcd398ea34a48b871898d589f55fc4c7bce00562fb670c972e7e1b0720(condition , expr_15) {
+            function require_helper_t_error_7_t_rational_1_by_1_t_stringliteral_332c39dcd398ea34a48b871898d589f55fc4c7bce00562fb670c972e7e1b0720(condition , expr_15) {
                 if iszero(condition) {
                     let memPtr := allocate_unbounded()
                     mstore(memPtr, 0x97ea5a2f00000000000000000000000000000000000000000000000000000000)
@@ -206,7 +206,7 @@ object "C_36" {
                 /// @src 0:200:201  "1"
                 let expr_15 := 0x01
                 /// @src 0:169:210  "require(condition, CustomError(1, \"two\"))"
-                require_helper_t_error_0x97ea5a2f00000000000000000000000000000000000000000000000000000000_t_rational_1_by_1_t_stringliteral_332c39dcd398ea34a48b871898d589f55fc4c7bce00562fb670c972e7e1b0720(expr_13, expr_15)
+                require_helper_t_error_7_t_rational_1_by_1_t_stringliteral_332c39dcd398ea34a48b871898d589f55fc4c7bce00562fb670c972e7e1b0720(expr_13, expr_15)
 
             }
             /// @src 0:97:330  "contract C..."

@@ -275,9 +275,7 @@ std::string YulUtilFunctions::requireWithError(FunctionCall const& errorConstruc
 	std::string const errorSignature = errorDefinition->functionType(true)->externalSignature();
 	std::string const signatureHash = formatNumber(util::selectorFromSignatureU256(errorSignature));
 	auto functionName = [&]() -> std::string {
-		std::string name =
-			"require_helper_t_error_" +
-			signatureHash;
+		std::string name = "require_helper_t_error_" + std::to_string(errorDefinition->id());
 		for (ASTPointer<Expression const> const& argument: errorConstructorCall.sortedArguments())
 		{
 			solAssert(argument->annotation().type);
