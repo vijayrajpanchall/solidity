@@ -32,7 +32,8 @@ object "Arraysum_34" {
                         let _1 := sload(0)
                         /// @src 0:364:423  "for(uint i = 0; i < values.length; i++)..."
                         for { }
-                        /** @src 0:368:378  "uint i = 0" */ 1
+                        /** @src 0:80:429  "contract Arraysum {..." */ 1
+                        /// @src 0:368:378  "uint i = 0"
                         {
                             /// @src 0:399:402  "i++"
                             var_i := /** @src 0:80:429  "contract Arraysum {..." */ add(/** @src 0:399:402  "i++" */ var_i, /** @src 0:80:429  "contract Arraysum {..." */ 1)
@@ -58,7 +59,7 @@ object "Arraysum_34" {
                         /// @src 0:80:429  "contract Arraysum {..."
                         let memPos := mload(64)
                         mstore(memPos, var_sum)
-                        return(memPos, 32)
+                        return(memPos, 0x20)
                     }
                 }
                 revert(0, 0)
