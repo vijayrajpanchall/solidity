@@ -49,7 +49,7 @@ struct OptimiserSettings
 
 		// should have good "compilability" property here.
 
-		"Tpeul"                        // Run functional expression inliner
+		"Trpeul"                       // Run functional expression inliner
 		"xa[r]cL"                      // Turn into SSA again and simplify
 		"gvif"                         // Run full inliner
 		"CTUca[r]LSsTFOtfDnca[r]Iulc"  // SSA plus simplify
