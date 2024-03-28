@@ -8,6 +8,7 @@ Compiler Features:
 
 Bugfixes:
  * SMTChecker: Fix internal error when using bitwise operators with an array element as argument.
+ * Yul Optimizer: Fix ``SSATransform`` step that would sometimes cause non-deterministic output in cases where an empty dummy contract was present.
 
 
 ### 0.8.25 (2023-03-14)
