@@ -46,7 +46,7 @@ function perpetual_pools_test
         "${compile_only_presets[@]}"
         ir-no-optimize
         ir-optimize-evm-only
-        ir-optimize-evm+yul
+        #ir-optimize-evm+yul  # Compilation fails with: "YulException: Variable _16 is 1 too deep in the stack." Memoryguard was present.
         legacy-no-optimize
         legacy-optimize-evm-only
         legacy-optimize-evm+yul
