@@ -51,8 +51,8 @@ contract test {
 // constructor()
 // gas irOptimized: 95949
 // gas irOptimized code: 528000
-// gas legacy: 126106
-// gas legacy code: 930200
+// gas legacy: 126250
+// gas legacy code: 931400
 // gas legacyOptimized: 102559
 // gas legacyOptimized code: 611400
 // toSlice(string): 0x20, 11, "hello world" -> 11, 0xa0
@@ -73,5 +73,5 @@ contract test {
 // gas legacyOptimized: 27914
 // benchmark(string,bytes32): 0x40, 0x0842021, 8, "solidity" -> 0x2020
 // gas irOptimized: 1980944
-// gas legacy: 4233999
-// gas legacyOptimized: 2318684
+// gas legacy: 4234020
+// gas legacyOptimized: 2318682
