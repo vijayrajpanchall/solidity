@@ -450,17 +450,25 @@ bool contains_if(T const& _t, Predicate const& _p)
 	return std::end(_t) != std::find_if(std::begin(_t), std::end(_t), _p);
 }
 
+/// Function that insert @param _elem into a vector @param _destination only if _elem is not
+/// already present in _destination vector.
+template <class T>
+void emplaceBackUnique(std::vector<T>& _destination, T _elem)
+{
+	if (!contains(_destination, _elem))
+		_destination.emplace_back(std::move(_elem));
+}
+
 /// Function that takes vector @param _destination and appends vector @param _source,
 /// whilst only taking into account unique elements of _source.
 template <class T>
 void concatenateVectorWithoutDuplicates(std::vector<T>& _destination, std::vector<T> const& _source)
 {
 	for (auto&& elem: _source)
-		if (!contains(_destination, elem))
-			_destination.emplace_back(std::move(elem));
+		emplaceBackUnique(_destination, elem);
 }
 
-/// Function that removes all elements present in vector @param _sub from vector @_super.
+/// Function that removes all elements present in vector @param _sub from vector @param _super.
 template <class T>
 void removeVectorSubset(std::vector<T>& _super, std::vector<T> const& _sub)
 {

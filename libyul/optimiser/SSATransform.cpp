@@ -166,7 +166,7 @@ private:
 	std::set<YulString> const& m_variablesToReplace;
 	/// Variables (that are to be replaced) currently in scope.
 	std::vector<YulString> m_variablesInScope;
-	/// Set of variables that do not have a specific value.
+	/// Variables that do not have a specific value.
 	std::vector<YulString> m_variablesToReassign;
 	TypeInfo const& m_typeInfo;
 };
