@@ -211,10 +211,10 @@ void IntroduceControlFlowSSA::operator()(Switch& _switch)
 	for (auto& c: _switch.cases)
 	{
 		(*this)(c.body);
-		util::concatenateVectorWithoutDuplicates(toReassign, m_variablesToReassign);
+		util::appendMissing(toReassign, m_variablesToReassign);
 	}
 
-	util::concatenateVectorWithoutDuplicates(m_variablesToReassign, toReassign);
+	util::appendMissing(m_variablesToReassign, toReassign);
 }
 
 void IntroduceControlFlowSSA::operator()(Block& _block)
@@ -226,7 +226,7 @@ void IntroduceControlFlowSSA::operator()(Block& _block)
 		_block.statements,
 		[&](Statement& _s) -> std::optional<std::vector<Statement>>
 		{
-		std::vector<Statement> toPrepend;
+			std::vector<Statement> toPrepend;
 			for (YulString toReassign: m_variablesToReassign)
 			{
 				YulString newName = m_nameDispenser.newName(toReassign);
@@ -246,10 +246,8 @@ void IntroduceControlFlowSSA::operator()(Block& _block)
 				for (auto const& var: varDecl.variables)
 					if (m_variablesToReplace.count(var.name))
 					{
-						if (!util::contains(variablesDeclaredHere, var.name))
-							variablesDeclaredHere.push_back(var.name);
-						if (!util::contains(m_variablesInScope, var.name))
-							m_variablesInScope.push_back(var.name);
+						util::tryEmplaceBack(variablesDeclaredHere, var.name);
+						util::tryEmplaceBack(m_variablesInScope, var.name);
 					}
 			}
 			else if (std::holds_alternative<Assignment>(_s))
@@ -272,7 +270,7 @@ void IntroduceControlFlowSSA::operator()(Block& _block)
 		}
 	);
 
-	util::concatenateVectorWithoutDuplicates(m_variablesToReassign, assignedVariables);
+	util::appendMissing(m_variablesToReassign, assignedVariables);
 	util::removeVectorSubset(m_variablesInScope, variablesDeclaredHere);
 	util::removeVectorSubset(m_variablesToReassign, variablesDeclaredHere);
 }
