@@ -165,7 +165,7 @@ private:
 	NameDispenser& m_nameDispenser;
 	std::set<YulString> const& m_variablesToReplace;
 	/// Variables (that are to be replaced) currently in scope.
-	std::vector<YulString> m_variablesInScope;
+	std::set<YulString> m_variablesInScope;
 	/// Variables that do not have a specific value.
 	std::vector<YulString> m_variablesToReassign;
 	TypeInfo const& m_typeInfo;
@@ -173,7 +173,7 @@ private:
 
 void IntroduceControlFlowSSA::operator()(FunctionDefinition& _function)
 {
-	std::vector<YulString> varsInScope;
+	std::set<YulString> varsInScope;
 	std::swap(varsInScope, m_variablesInScope);
 	std::vector<YulString> toReassign;
 	std::swap(toReassign, m_variablesToReassign);
@@ -181,7 +181,7 @@ void IntroduceControlFlowSSA::operator()(FunctionDefinition& _function)
 	for (auto const& param: _function.parameters)
 		if (m_variablesToReplace.count(param.name))
 		{
-			m_variablesInScope.push_back(param.name);
+			m_variablesInScope.insert(param.name);
 			m_variablesToReassign.push_back(param.name);
 		}
 
@@ -247,7 +247,7 @@ void IntroduceControlFlowSSA::operator()(Block& _block)
 					if (m_variablesToReplace.count(var.name))
 					{
 						util::tryEmplaceBack(variablesDeclaredHere, var.name);
-						util::tryEmplaceBack(m_variablesInScope, var.name);
+						m_variablesInScope.insert(var.name);
 					}
 			}
 			else if (std::holds_alternative<Assignment>(_s))
@@ -271,7 +271,7 @@ void IntroduceControlFlowSSA::operator()(Block& _block)
 	);
 
 	util::appendMissing(m_variablesToReassign, assignedVariables);
-	util::removeVectorSubset(m_variablesInScope, variablesDeclaredHere);
+	m_variablesInScope -= variablesDeclaredHere;
 	util::removeVectorSubset(m_variablesToReassign, variablesDeclaredHere);
 }
 
