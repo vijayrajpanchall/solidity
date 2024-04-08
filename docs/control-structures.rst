@@ -633,14 +633,14 @@ The ``require`` function provides three overloads:
 2. ``require(bool, string)`` which accepts a boolean condition, as well as an error message.
 3. ``require(bool, error)`` which accepts a boolean condition, and a custom error.
 
-The first overload (condition only), will create an error without any data.
+The first overload (condition only), will revert without any data (not even an error selector).
 The second overload will create an ``Error(string)``, whereas the third overload will create
 a custom, user supplied error, provided as the second argument to the ``require`` function.
 
 .. note::
 
-    Using custom errors with ``require`` is only possible with the ``via-ir`` pipeline, i.e. compilation via Yul.
-    For the default compilation, please use ``if (!condition) revert CustomError();`` instead.
+    Using custom errors with ``require`` is only supported by the ``via-ir`` pipeline, i.e. compilation via Yul.
+    For the legacy pipeline, please use ``if (!condition) revert CustomError();`` instead.
 
 An ``Error(args)`` exception (or an exception without data) is generated
 by the compiler in the following situations:
