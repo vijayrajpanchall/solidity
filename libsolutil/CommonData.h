@@ -159,6 +159,14 @@ inline std::multiset<T...>& operator-=(std::multiset<T...>& _a, C const& _b)
 	return _a;
 }
 
+/// Remove the elements of a container from a vector
+template <class T, class U> std::vector<T>& operator-=(std::vector<T>& _a, U& _b)
+{
+	for (auto const& i: _b)
+		_a.erase(std::find(_a.begin(), _a.end(), i));
+	return _a;
+}
+
 namespace solidity::util
 {
 
@@ -466,14 +474,6 @@ void appendMissing(std::vector<T>& _destination, std::vector<T> const& _source)
 {
 	for (auto&& elem: _source)
 		tryEmplaceBack(_destination, elem);
-}
-
-/// Function that removes all elements present in vector @param _sub from vector @param _super.
-template <class T>
-void removeVectorSubset(std::vector<T>& _super, std::vector<T> const& _sub)
-{
-	for (auto const& elem: _sub)
-		_super.erase(std::find(_super.begin(), _super.end(), elem));
 }
 
 /// Function that iterates over a vector, calling a function on each of its

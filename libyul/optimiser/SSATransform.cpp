@@ -272,7 +272,7 @@ void IntroduceControlFlowSSA::operator()(Block& _block)
 
 	util::appendMissing(m_variablesToReassign, assignedVariables);
 	m_variablesInScope -= variablesDeclaredHere;
-	util::removeVectorSubset(m_variablesToReassign, variablesDeclaredHere);
+	m_variablesToReassign -= variablesDeclaredHere;
 }
 
 /**
