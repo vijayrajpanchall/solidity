@@ -4201,9 +4201,7 @@ MemberList::MemberMap MagicType::nativeMembers(ASTNode const*) const
 			)}
 		});
 	case Kind::Error:
-	{
 		return {};
-	}
 	case Kind::MetaType:
 	{
 		solAssert(

@@ -96,7 +96,7 @@ public:
 
 	// @returns function that has equivalent logic of a require statement, but with a custom
 	// error constructor parameter.
-	std::string requireWithError(FunctionCall const& errorConstructorCall);
+	std::string requireWithErrorFunction(FunctionCall const& errorConstructorCall);
 
 	/// @returns the name of a function that takes a (cleaned) value of the given value type and
 	/// left-aligns it, usually for use in non-padded encoding.

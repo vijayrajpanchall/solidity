@@ -267,14 +267,17 @@ std::string YulUtilFunctions::requireOrAssertFunction(bool _assert, Type const* 
 	});
 }
 
-std::string YulUtilFunctions::requireWithError(FunctionCall const& errorConstructorCall)
+std::string YulUtilFunctions::requireWithErrorFunction(FunctionCall const& errorConstructorCall)
 {
 	ErrorDefinition const* errorDefinition = dynamic_cast<ErrorDefinition const*>(ASTNode::referencedDeclaration(errorConstructorCall.expression()));
 	solAssert(errorDefinition);
 
 	std::string const errorSignature = errorDefinition->functionType(true)->externalSignature();
 	std::string const signatureHash = formatNumber(util::selectorFromSignatureU256(errorSignature));
-	auto functionName = [&]() -> std::string {
+	auto functionName = [&]() {
+		// Note that in most cases we'll always generate one function per error definition,
+		// because types in the constructor call will match the ones in the definition. The only
+		// exception are calls with types, where each instance has its own type (e.g. literals).
 		std::string name = "require_helper_t_error_" + std::to_string(errorDefinition->id());
 		for (ASTPointer<Expression const> const& argument: errorConstructorCall.sortedArguments())
 		{
@@ -285,26 +288,24 @@ std::string YulUtilFunctions::requireWithError(FunctionCall const& errorConstruc
 	};
 
 	auto errorArgumentVarsAndTypes = [&]() -> std::tuple<std::vector<std::string>, std::vector<Type const*>> {
-		std::vector<ASTPointer<Expression const>> const& errorConstructorArguments = errorConstructorCall.sortedArguments();
-		std::vector<std::string> errorArgumentVars{};
-		std::vector<Type const*> errorArgumentTypes{};
-		for (ASTPointer<Expression const> const& arg: errorConstructorArguments)
+		std::vector<std::string> errorArgumentVars;
+		std::vector<Type const*> errorArgumentTypes;
+		for (ASTPointer<Expression const> const& arg: errorConstructorCall.sortedArguments())
 		{
 			solAssert(arg->annotation().type);
 			if (arg->annotation().type->sizeOnStack() > 0)
 				errorArgumentVars += IRVariable(*arg).stackSlots();
 			errorArgumentTypes.push_back(arg->annotation().type);
 		}
-		return std::tie(errorArgumentVars, errorArgumentTypes);
+		return std::make_tuple(std::move(errorArgumentVars), std::move(errorArgumentTypes));
 	};
 
 	return m_functionCollector.createFunction(functionName(), [&]() {
-		std::vector<Type const*> const& parameterTypes = errorDefinition->functionType(true)->parameterTypes();
 		auto [errorArgumentVars, errorArgumentTypes] = errorArgumentVarsAndTypes();
 		std::string const encodeFunc = ABIFunctions(m_evmVersion, m_revertStrings, m_functionCollector)
 			.tupleEncoder(
 				errorArgumentTypes,
-				parameterTypes
+				errorDefinition->functionType(true)->parameterTypes()
 			);
 
 		return Whiskers(R"(
