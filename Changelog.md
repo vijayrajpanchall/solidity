@@ -3,6 +3,7 @@
 Language Features:
  * Introduce a new overload ``require(bool, Error)`` that allows usage of ``require`` functions with custom errors. This feature is available in the ``via-ir`` pipeline only.
 
+
 Compiler Features:
 
 
