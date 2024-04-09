@@ -39,7 +39,7 @@ do
     then
         opts+=(--ignore-warnings)
     fi
-    if grep "// This will only compile with via-ir" "$f" >/dev/null
+    if grep "// This will only compile with via-IR" "$f" >/dev/null
     then
         opts+=(--via-ir)
     fi

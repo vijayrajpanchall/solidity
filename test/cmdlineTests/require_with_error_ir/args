@@ -1,1 +1,1 @@
---ir
+--ir --debug-info none

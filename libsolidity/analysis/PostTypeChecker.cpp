@@ -342,8 +342,11 @@ struct EventOutsideEmitErrorOutsideRevertChecker: public PostTypeChecker::Checke
 		if (*_functionCall.annotation().kind == FunctionCallKind::FunctionCall)
 			if (auto const* functionType = dynamic_cast<FunctionType const*>(_functionCall.expression().annotation().type))
 			{
-				if (!m_inRequire && functionType->kind() == FunctionType::Kind::Require)
+				if (functionType->kind() == FunctionType::Kind::Require)
+				{
+					solAssert(!m_inRequire);
 					m_inRequire = true;
+				}
 				// Check for event outside of emit statement
 				if (!dynamic_cast<EmitStatement const*>(m_currentStatement) && functionType->kind() == FunctionType::Kind::Event)
 					m_errorReporter.typeError(
@@ -367,8 +370,11 @@ struct EventOutsideEmitErrorOutsideRevertChecker: public PostTypeChecker::Checke
 	{
 		if (*_functionCall.annotation().kind == FunctionCallKind::FunctionCall)
 			if (auto const* functionType = dynamic_cast<FunctionType const*>(_functionCall.expression().annotation().type))
-				if (m_inRequire && functionType->kind() == FunctionType::Kind::Require)
+				if (functionType->kind() == FunctionType::Kind::Require)
+				{
+					solAssert(m_inRequire);
 					m_inRequire = false;
+				}
 	}
 
 private:

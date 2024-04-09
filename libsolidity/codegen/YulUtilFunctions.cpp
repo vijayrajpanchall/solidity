@@ -274,18 +274,18 @@ std::string YulUtilFunctions::requireWithErrorFunction(FunctionCall const& error
 
 	std::string const errorSignature = errorDefinition->functionType(true)->externalSignature();
 	std::string const signatureHash = formatNumber(util::selectorFromSignatureU256(errorSignature));
-	auto functionName = [&]() {
+	std::string const functionName = [&]() {
 		// Note that in most cases we'll always generate one function per error definition,
 		// because types in the constructor call will match the ones in the definition. The only
 		// exception are calls with types, where each instance has its own type (e.g. literals).
-		std::string name = "require_helper_t_error_" + std::to_string(errorDefinition->id());
+		std::string name = "require_helper_t_error_" + std::to_string(errorDefinition->id()) + "_" + errorDefinition->name();
 		for (ASTPointer<Expression const> const& argument: errorConstructorCall.sortedArguments())
 		{
 			solAssert(argument->annotation().type);
 			name += ("_" + argument->annotation().type->identifier());
 		}
 		return name;
-	};
+	}();
 
 	auto errorArgumentVarsAndTypes = [&]() -> std::tuple<std::vector<std::string>, std::vector<Type const*>> {
 		std::vector<std::string> errorArgumentVars;
@@ -298,10 +298,10 @@ std::string YulUtilFunctions::requireWithErrorFunction(FunctionCall const& error
 			errorArgumentTypes.push_back(arg->annotation().type);
 		}
 		return std::make_tuple(std::move(errorArgumentVars), std::move(errorArgumentTypes));
-	};
+	}();
 
-	return m_functionCollector.createFunction(functionName(), [&]() {
-		auto [errorArgumentVars, errorArgumentTypes] = errorArgumentVarsAndTypes();
+	return m_functionCollector.createFunction(functionName, [&]() {
+		auto [errorArgumentVars, errorArgumentTypes] = errorArgumentVarsAndTypes;
 		std::string const encodeFunc = ABIFunctions(m_evmVersion, m_revertStrings, m_functionCollector)
 			.tupleEncoder(
 				errorArgumentTypes,
@@ -318,7 +318,7 @@ std::string YulUtilFunctions::requireWithErrorFunction(FunctionCall const& error
 				}
 			}
 		)")
-		("functionName", functionName())
+		("functionName", functionName)
 		("allocateUnbounded", allocateUnboundedFunction())
 		("errorHash", signatureHash)
 		("abiEncodeFunc", encodeFunc)
