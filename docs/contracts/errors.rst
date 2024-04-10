@@ -53,7 +53,7 @@ And the same again with the ``require`` statement:
     /// @param required requested amount to transfer.
     error InsufficientBalance(uint256 available, uint256 required);
 
-    // This will only compile with via IR
+    // This will only compile with via-IR
     contract TestToken {
         mapping(address => uint) balance;
         function transfer(address to, uint256 amount) public {
