@@ -128,39 +128,41 @@ sub_0: assembly {
       and
       dup2
       add
+      swap1
       0xffffffffffffffff
-      dup2
+      dup3
       gt
-      dup3
-      dup3
+      dup2
+      dup4
       lt
       or
       tag_9
       jumpi
       0x40
+      swap2
+      dup3
       mstore
         /* "viair_subobject_optimization/input.sol":745:765  type(C).creationCode */
-      dup2
+      dup3
       dup2
       mstore
       0x20
       dup2
       add
-      swap2
+      swap3
       dataOffset(sub_0)
-      dup4
+      dup5
       codecopy
         /* "viair_subobject_optimization/input.sol":669:772  contract D {... */
-      0x40
-      dup1
+      dup2
       mload
       swap3
       dup4
-      swap3
+      swap2
         /* "viair_subobject_optimization/input.sol":745:765  type(C).creationCode */
       0x20
         /* "viair_subobject_optimization/input.sol":669:772  contract D {... */
-      dup5
+      dup4
       mstore
       mload
       dup1
@@ -169,28 +171,28 @@ sub_0: assembly {
         /* "viair_subobject_optimization/input.sol":745:765  type(C).creationCode */
       0x20
         /* "viair_subobject_optimization/input.sol":669:772  contract D {... */
-      dup7
+      dup6
       add
       mstore
-      dup4
-      dup6
+      dup5
+      dup5
       add
       mcopy
       0x00
-      dup4
+      dup3
       dup3
       add
-      dup4
+      dup5
       add
       mstore
       0x1f
       add
       not(0x1f)
       and
-      dup3
-      add
+      dup2
       add
       sub
+      add
       swap1
       return
     tag_9:

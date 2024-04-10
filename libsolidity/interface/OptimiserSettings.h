@@ -56,7 +56,7 @@ struct OptimiserSettings
 
 		"scCTUt"
 		"gvif"                         // Run full inliner
-		"[scCTUt] TOntnfDIul"          // Perform structural simplification
+		"x[scCTUt] TOntnfDIul"         // Perform structural simplification
 		"gvif"                         // Run full inliner
 
 		"jmul[jul] VcTOcul jmul";      // Make source short and pretty

@@ -39,7 +39,7 @@ object "C_10" {
                         mstore(add(memPos, 0x20), length)
                         mcopy(add(memPos, 64), _2, length)
                         mstore(add(add(memPos, length), 64), 0)
-                        return(memPos, sub(add(add(memPos, and(add(length, 31), not(31))), 64), memPos))
+                        return(memPos, add(sub(add(memPos, and(add(length, 31), not(31))), memPos), 64))
                     }
                 }
                 revert(0, 0)

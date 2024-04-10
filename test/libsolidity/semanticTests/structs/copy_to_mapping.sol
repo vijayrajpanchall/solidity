@@ -45,18 +45,18 @@ contract C {
 }
 // ----
 // from_state() -> 0x20, 0x60, 0xa0, 21, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14
-// gas irOptimized: 121526
+// gas irOptimized: 121532
 // gas legacy: 123053
-// gas legacyOptimized: 121696
+// gas legacyOptimized: 121704
 // from_storage() -> 0x20, 0x60, 0xa0, 21, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14
-// gas irOptimized: 121570
+// gas irOptimized: 121576
 // gas legacy: 123102
-// gas legacyOptimized: 121748
+// gas legacyOptimized: 121756
 // from_memory() -> 0x20, 0x60, 0xa0, 21, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14
-// gas irOptimized: 122768
+// gas irOptimized: 122774
 // gas legacy: 129997
-// gas legacyOptimized: 128637
+// gas legacyOptimized: 128645
 // from_calldata((bytes,uint16[],uint16)): 0x20, 0x60, 0xa0, 21, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14 -> 0x20, 0x60, 0xa0, 21, 3, 0x666f6f0000000000000000000000000000000000000000000000000000000000, 2, 13, 14
-// gas irOptimized: 114835
+// gas irOptimized: 114841
 // gas legacy: 118210
-// gas legacyOptimized: 115321
+// gas legacyOptimized: 115329

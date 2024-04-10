@@ -32,7 +32,7 @@ object "C_59" {
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x41)
-                            revert(0, 0x24)
+                            revert(0, 36)
                         }
                         let _2 := shl(5, _1)
                         let memPtr := 0
@@ -42,7 +42,7 @@ object "C_59" {
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x41)
-                            revert(0, 0x24)
+                            revert(0, 36)
                         }
                         mstore(64, newFreePtr)
                         let dst := memPtr
@@ -62,7 +62,7 @@ object "C_59" {
                             {
                                 mstore(0, shl(224, 0x4e487b71))
                                 mstore(4, 0x41)
-                                revert(0, 0x24)
+                                revert(0, 36)
                             }
                             mstore(64, newFreePtr_1)
                             mstore(memPtr_1, calldataload(src))
@@ -71,11 +71,11 @@ object "C_59" {
                         }
                         /// @src 0:469:474  "_s[0]"
                         let addr := /** @src 0:346:625  "contract C {..." */ 0
-                        if iszero(iszero(iszero(mload(memPtr))))
+                        if iszero(mload(memPtr))
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x32)
-                            revert(0, 0x24)
+                            revert(0, 36)
                         }
                         addr := dst_1
                         sstore(0, mload(/** @src 0:469:474  "_s[0]" */ mload(dst_1)))
@@ -85,7 +85,7 @@ object "C_59" {
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x32)
-                            revert(0, 0x24)
+                            revert(0, 36)
                         }
                         addr_1 := add(memPtr, 64)
                         let _3 := mload(/** @src 0:489:494  "_s[1]" */ mload(addr_1))
@@ -98,7 +98,7 @@ object "C_59" {
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x41)
-                            revert(0, 0x24)
+                            revert(0, 36)
                         }
                         mstore(64, newFreePtr_2)
                         mstore(memPtr_2, 100)
@@ -114,7 +114,7 @@ object "C_59" {
                         mstore(add(memPos, 64), length)
                         mcopy(add(memPos, 96), _4, length)
                         mstore(add(add(memPos, length), 96), 0)
-                        return(memPos, sub(add(add(memPos, and(add(length, 0x1f), not(31))), 96), memPos))
+                        return(memPos, add(sub(add(memPos, and(add(length, 0x1f), not(31))), memPos), 96))
                     }
                 }
                 revert(0, 0)
