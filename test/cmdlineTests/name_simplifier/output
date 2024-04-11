@@ -69,26 +69,23 @@ object "C_59" {
                             mstore(dst, memPtr_1)
                             dst := add(dst, 32)
                         }
-                        /// @src 0:469:474  "_s[0]"
-                        let addr := /** @src 0:346:625  "contract C {..." */ 0
                         if iszero(iszero(iszero(mload(memPtr))))
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x32)
                             revert(0, 0x24)
                         }
-                        addr := dst_1
                         sstore(0, mload(/** @src 0:469:474  "_s[0]" */ mload(dst_1)))
                         /// @src 0:489:494  "_s[1]"
-                        let addr_1 := /** @src 0:346:625  "contract C {..." */ 0
+                        let addr := /** @src 0:346:625  "contract C {..." */ 0
                         if iszero(lt(/** @src 0:492:493  "1" */ 0x01, /** @src 0:346:625  "contract C {..." */ mload(memPtr)))
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x32)
                             revert(0, 0x24)
                         }
-                        addr_1 := add(memPtr, 64)
-                        let _3 := mload(/** @src 0:489:494  "_s[1]" */ mload(addr_1))
+                        addr := add(memPtr, 64)
+                        let _3 := mload(/** @src 0:489:494  "_s[1]" */ mload(addr))
                         /// @src 0:346:625  "contract C {..."
                         sstore(0x02, _3)
                         let memPtr_2 := 0

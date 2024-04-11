@@ -26,40 +26,34 @@
 //     }
 //     function f_63()
 //     {
-//         let a := 1
 //         let b := 10
-//         let a_1 := calldataload(0)
-//         let _1 := iszero(a_1)
+//         let a := calldataload(0)
+//         let _1 := iszero(a)
 //         for { } iszero(b) { b := add(b, not(0)) }
 //         {
-//             a := a_1
-//             mstore(a_1, 0)
+//             mstore(a, 0)
 //             if _1 { leave }
 //         }
 //     }
 //     function f()
 //     {
-//         let a := 2
 //         let b := 10
-//         let a_1 := calldataload(0)
-//         let _1 := iszero(a_1)
+//         let a := calldataload(0)
+//         let _1 := iszero(a)
 //         for { } iszero(b) { b := add(b, not(0)) }
 //         {
-//             a := a_1
-//             mstore(a_1, 0)
+//             mstore(a, 0)
 //             if _1 { leave }
 //         }
 //     }
 //     function f_65()
 //     {
-//         let a := 3
 //         let b := 10
-//         let a_1 := calldataload(0)
-//         let _1 := iszero(a_1)
+//         let a := calldataload(0)
+//         let _1 := iszero(a)
 //         for { } iszero(b) { b := add(b, not(0)) }
 //         {
-//             a := a_1
-//             mstore(a_1, 0)
+//             mstore(a, 0)
 //             if _1 { leave }
 //         }
 //     }

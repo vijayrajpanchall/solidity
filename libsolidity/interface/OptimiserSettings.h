@@ -56,12 +56,13 @@ struct OptimiserSettings
 
 		"scCTUt"
 		"gvif"                         // Run full inliner
+		"ciTFviu"
 		"[scCTUt] TOntnfDIul"          // Perform structural simplification
 		"gvif"                         // Run full inliner
 
 		"jmul[jul] VcTOcul jmul";      // Make source short and pretty
 
-	static char constexpr DefaultYulOptimiserCleanupSteps[] = "fDnTOcmu";
+	static char constexpr DefaultYulOptimiserCleanupSteps[] = "fDnTOcTrmu";
 
 	/// No optimisations at all - not recommended.
 	static OptimiserSettings none()

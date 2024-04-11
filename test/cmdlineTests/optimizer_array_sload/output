@@ -40,10 +40,8 @@ object "Arraysum_34" {
                         /// @src 0:399:402  "i++"
                         {
                             /// @src 0:380:397  "i < values.length"
-                            let _2 := iszero(lt(var_i, _1))
-                            if _2 { break }
+                            if iszero(lt(var_i, _1)) { break }
                             /// @src 0:80:429  "contract Arraysum {..."
-                            _2 := 0
                             mstore(0, 0)
                             let sum := add(var_sum, sload(add(18569430475105882587588266137607568536673111973893317399460219858819262702947, var_i)))
                             if gt(var_sum, sum)

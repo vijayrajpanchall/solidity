@@ -454,41 +454,33 @@ object "D_27" {
                             returndatacopy(pos, 0, returndatasize())
                             revert(pos, returndatasize())
                         }
-                        let memPtr := 0
-                        let size := 0
-                        size := 0
-                        let memPtr_1 := mload(64)
-                        let newFreePtr := add(memPtr_1, 64)
-                        if or(gt(newFreePtr, /** @src 0:446:491  "new /// @src 0:149:156  \"new C()\"..." */ 0xffffffffffffffff), /** @src 0:279:599  "contract D /** @src 0:96:165  \"contract D {...\" *\/ {..." */ lt(newFreePtr, memPtr_1))
+                        let memPtr := mload(64)
+                        let newFreePtr := add(memPtr, 64)
+                        if or(gt(newFreePtr, /** @src 0:446:491  "new /// @src 0:149:156  \"new C()\"..." */ 0xffffffffffffffff), /** @src 0:279:599  "contract D /** @src 0:96:165  \"contract D {...\" *\/ {..." */ lt(newFreePtr, memPtr))
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x41)
                             revert(0, 0x24)
                         }
                         mstore(64, newFreePtr)
-                        memPtr := memPtr_1
-                        mstore(memPtr_1, 2)
-                        mstore(add(memPtr_1, 32), "/*")
-                        let memPtr_2 := 0
-                        let size_1 := 0
-                        size_1 := 0
-                        let memPtr_3 := mload(64)
-                        let newFreePtr_1 := add(memPtr_3, 96)
-                        if or(gt(newFreePtr_1, /** @src 0:446:491  "new /// @src 0:149:156  \"new C()\"..." */ 0xffffffffffffffff), /** @src 0:279:599  "contract D /** @src 0:96:165  \"contract D {...\" *\/ {..." */ lt(newFreePtr_1, memPtr_3))
+                        mstore(memPtr, 2)
+                        mstore(add(memPtr, 32), "/*")
+                        let memPtr_1 := mload(64)
+                        let newFreePtr_1 := add(memPtr_1, 96)
+                        if or(gt(newFreePtr_1, /** @src 0:446:491  "new /// @src 0:149:156  \"new C()\"..." */ 0xffffffffffffffff), /** @src 0:279:599  "contract D /** @src 0:96:165  \"contract D {...\" *\/ {..." */ lt(newFreePtr_1, memPtr_1))
                         {
                             mstore(0, shl(224, 0x4e487b71))
                             mstore(4, 0x41)
                             revert(0, 0x24)
                         }
                         mstore(64, newFreePtr_1)
-                        memPtr_2 := memPtr_3
-                        mstore(memPtr_3, 39)
-                        let _4 := add(memPtr_3, 32)
+                        mstore(memPtr_1, 39)
+                        let _4 := add(memPtr_1, 32)
                         mstore(_4, 0x2f2a2a204073726320303a39363a313635202022636f6e74726163742044207b)
-                        mstore(add(memPtr_3, 64), shl(200, 0x2e2e2e22202a2f))
+                        mstore(add(memPtr_1, 64), shl(200, 0x2e2e2e22202a2f))
                         let memPos := mload(64)
                         mstore(memPos, 32)
-                        let length := mload(memPtr_3)
+                        let length := mload(memPtr_1)
                         mstore(add(memPos, 32), length)
                         mcopy(add(memPos, 64), _4, length)
                         mstore(add(add(memPos, length), 64), 0)

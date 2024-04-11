@@ -1101,7 +1101,9 @@
 //         if gt(add(add(_1, length), 32), dataEnd) { revert(0, 0) }
 //         value2 := add(_1, 32)
 //         value3 := length
-//         value4 := cleanup_revert_enum_Operation(calldataload(add(headStart, 96)))
+//         let _2 := calldataload(add(headStart, 96))
+//         if iszero(lt(_2, 3)) { revert(0, 0) }
+//         value4 := _2
 //     }
 //     function abi_encode_bytes32_address_uint256_bytes32_enum_Operation_uint256_uint256_uint256_address_address_uint256(headStart, value10, value9, value8, value7, value6, value5, value4, value3, value2, value1, value0) -> tail
 //     {
@@ -1118,10 +1120,5 @@
 //         mstore(add(headStart, 256), and(value8, sub(shl(160, 1), 1)))
 //         mstore(add(headStart, 288), and(value9, sub(shl(160, 1), 1)))
 //         mstore(add(headStart, 320), value10)
-//     }
-//     function cleanup_revert_enum_Operation(value) -> cleaned
-//     {
-//         if iszero(lt(value, 3)) { revert(0, 0) }
-//         cleaned := value
 //     }
 // }

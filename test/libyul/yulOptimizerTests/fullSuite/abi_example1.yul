@@ -466,7 +466,7 @@
 //         let _1 := mload(0)
 //         let pos := 0x20
 //         let length := mload(_1)
-//         mstore(pos, length)
+//         mstore(0x20, length)
 //         pos := 64
 //         let srcPtr := add(_1, 0x20)
 //         let i := 0
