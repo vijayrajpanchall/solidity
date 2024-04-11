@@ -1726,7 +1726,7 @@ std::string CompilerStack::createMetadata(Contract const& _contract, bool _forIR
 		{
 			solAssert(m_optimiserSettings.optimizeStackAllocation == false);
 			details["yulDetails"] = Json::objectValue;
-			details["yulDetails"]["optimizerSteps"] = ":";
+			details["yulDetails"]["optimizerSteps"] = m_optimiserSettings.yulOptimiserSteps + ":" + m_optimiserSettings.yulOptimiserCleanupSteps;
 		}
 		else
 		{
