@@ -52,14 +52,14 @@ contract C {
 }
 // ----
 // from_memory() -> 0x20, 0x60, 0xa0, 0x15, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14
-// gas irOptimized: 122748
+// gas irOptimized: 122720
 // gas legacy: 130136
-// gas legacyOptimized: 128641
+// gas legacyOptimized: 128649
 // from_state() -> 0x20, 0x60, 0xa0, 21, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14
-// gas irOptimized: 121435
+// gas irOptimized: 121424
 // gas legacy: 123191
-// gas legacyOptimized: 121756
+// gas legacyOptimized: 121764
 // from_calldata((bytes,uint16[],uint16)): 0x20, 0x60, 0xa0, 21, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14 -> 0x20, 0x60, 0xa0, 0x15, 3, 0x666F6F0000000000000000000000000000000000000000000000000000000000, 2, 13, 14
-// gas irOptimized: 114863
+// gas irOptimized: 114852
 // gas legacy: 122425
-// gas legacyOptimized: 120692
+// gas legacyOptimized: 120700

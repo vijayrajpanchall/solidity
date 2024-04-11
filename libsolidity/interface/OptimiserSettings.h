@@ -49,19 +49,19 @@ struct OptimiserSettings
 
 		// should have good "compilability" property here.
 
-		"Tpeul"                        // Run functional expression inliner
+		"Trpeul"                       // Run functional expression inliner
 		"xa[r]cL"                      // Turn into SSA again and simplify
-		"gvif"                         // Run full inliner
+		"gvifM"                        // Run full inliner
 		"CTUca[r]LSsTFOtfDnca[r]Iulc"  // SSA plus simplify
 
 		"scCTUt"
-		"gvif"                         // Run full inliner
-		"[scCTUt] TOntnfDIul"          // Perform structural simplification
-		"gvif"                         // Run full inliner
+		"gvifM"                        // Run full inliner
+		"x[scCTUt] TOntnfDIul"         // Perform structural simplification
+		"gvifM"                        // Run full inliner
 
 		"jmul[jul] VcTOcul jmul";      // Make source short and pretty
 
-	static char constexpr DefaultYulOptimiserCleanupSteps[] = "fDnTOcmu";
+	static char constexpr DefaultYulOptimiserCleanupSteps[] = "fDnTOcmuO";
 
 	/// No optimisations at all - not recommended.
 	static OptimiserSettings none()
