@@ -324,3 +324,24 @@ function gnu_grep
         grep "$@"
     fi
 }
+
+function time_json_to_file
+{
+    local output_file="$1"
+    local cmd="$2"
+
+    # $TIMEFORMAT is the format used by built-in `time`. Description is in `man bash`.
+    local original_timeformat="$TIMEFORMAT"
+    TIMEFORMAT='{"real": %R, "user": %U, "sys": %S}'
+
+    # We temporarily use descriptors 3 and 4 to preserve stdout and stderr of the original command.
+    # This allows us to store `time`'s own stderr in a file. Then we restore initial descriptors.
+    {
+        {
+            time { "$cmd" 1>&3 2>&4; }
+        } 2> "$output_file"
+    } 3>&1 4>&2
+
+    # Restore original format so that it does not spill outside of the function.
+    TIMEFORMAT="$original_timeformat"
+}
